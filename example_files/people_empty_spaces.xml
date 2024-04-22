@@ -1,0 +1,162 @@
+<people>
+    <person>
+        <name>John</name>
+        <surname>Doe</surname>
+        <age>30</age>
+        <gender>Male</gender>
+        <rank>Manager</rank>
+        <salary>50000</salary>
+    </person>
+    <person>
+        <name>Jane</name>
+        <surname>Smith</surname>
+        <age>25</age>
+        <gender>Female</gender>
+        <rank>Developer</rank>
+        <salary>60000</salary>
+    </person>
+    <person>
+        <name>Michael</name>
+        <surname>Johnson</surname>
+        <age>35</age>
+        <gender />
+        <rank>Developer</rank>
+        <salary />
+    </person>
+    <person>
+        <name>Alice</name>
+        <surname>Williams</surname>
+        <age />
+        <gender>Female</gender>
+        <rank>Designer</rank>
+        <salary>60000</salary>
+    </person>
+    <person>
+        <name>David</name>
+        <surname>Anderson</surname>
+        <age>40</age>
+        <gender>Male</gender>
+        <rank>Project Manager</rank>
+        <salary>75000</salary>
+    </person>
+    <person>
+        <name>Emily</name>
+        <surname>Brown</surname>
+        <age>32</age>
+        <gender>Female</gender>
+        <rank>HR Specialist</rank>
+        <salary>48000</salary>
+    </person>
+    <person>
+        <name>James</name>
+        <surname>Miller</surname>
+        <age>45</age>
+        <gender>Male</gender>
+        <rank>Senior Manager</rank>
+        <salary>85000</salary>
+    </person>
+    <person>
+        <name>Sarah</name>
+        <surname>Taylor</surname>
+        <age>27</age>
+        <gender>Female</gender>
+        <rank>Designer</rank>
+        <salary>58000</salary>
+    </person>
+    <person>
+        <name>Robert</name>
+        <surname>Wilson</surname>
+        <age>38</age>
+        <gender>Male</gender>
+        <rank>Software Engineer</rank>
+        <salary>70000</salary>
+    </person>
+    <person>
+        <name>Linda</name>
+        <surname>Clark</surname>
+        <age>33</age>
+        <gender>Female</gender>
+        <rank>Manager</rank>
+        <salary>67000</salary>
+    </person>
+    <person>
+        <name>Christopher</name>
+        <surname>White</surname>
+        <age>29</age>
+        <gender>Male</gender>
+        <rank>Frontend Developer</rank>
+        <salary>61000</salary>
+    </person>
+    <person>
+        <name>Mary</name>
+        <surname>Thomas</surname>
+        <age>42</age>
+        <gender>Female</gender>
+        <rank>Senior Designer</rank>
+        <salary>73000</salary>
+    </person>
+    <person>
+        <name>Matthew</name>
+        <surname>Adams</surname>
+        <age>31</age>
+        <gender>Male</gender>
+        <rank>Product Manager</rank>
+        <salary>79000</salary>
+    </person>
+    <person>
+        <name>Michelle</name>
+        <surname>Evans</surname>
+        <age>36</age>
+        <gender>Female</gender>
+        <rank>Product Manager</rank>
+        <salary>56000</salary>
+    </person>
+    <person>
+        <name>Andrew</name>
+        <surname>Thompson</surname>
+        <age>39</age>
+        <gender>Male</gender>
+        <rank>Business Analyst</rank>
+        <salary>68000</salary>
+    </person>
+    <person>
+        <name>Kimberly</name>
+        <surname>Hall</surname>
+        <age>26</age>
+        <gender>Female</gender>
+        <rank>UI/UX Designer</rank>
+        <salary>68000</salary>
+    </person>
+    <person>
+        <name>Steven</name>
+        <surname>Young</surname>
+        <age>37</age>
+        <gender>Male</gender>
+        <rank>Data Scientist</rank>
+        <salary>82000</salary>
+    </person>
+    <person>
+        <name>Jessica</name>
+        <surname>Lee</surname>
+        <age>34</age>
+        <gender>Female</gender>
+        <rank>Quality Assurance</rank>
+        <salary>59000</salary>
+    </person>
+    <person>
+        <name>Kevin</name>
+        <surname>Garcia</surname>
+        <age>30</age>
+        <gender>Male</gender>
+        <rank>DevOps Engineer</rank>
+        <salary>74000</salary>
+    </person>
+    <person>
+        <name>Stephanie</name>
+        <surname>Rodriguez</surname>
+        <age>29</age>
+        <gender>Female</gender>
+        <rank>Technical Writer</rank>
+        <salary>57000</salary>
+    </person>
+</people>

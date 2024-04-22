@@ -1,26 +1,13 @@
+# Program filtrujący informacje o osobach z pliku XML wg zadanych kryteriów
 import os
 import pandas as pd
 import xmlschema
 import argparse
 
-
-def xml_to_dataframe(xml_path: str, schema_path: str) -> pd.DataFrame:
-    if not os.path.exists(xml_path):
-        print(f"Plik {xml_path} nie istnieje lub podana ścieżka jest błędna.")
-        return False
-    if not is_xml_valid(schema_path, xml_path):
-        return
-    df_from_xml = pd.read_xml(xml_path)
-    print(df_from_xml)
-    return df_from_xml
-
-
-def is_xml_valid(schema_path: str, xml_path: str) -> bool:
-    if not os.path.exists(schema_path):
-        print(f"Plik {schema_path} nie istnieje lub podana ścieżka jest błędna.")
-        return False
-    xml_schema = xmlschema.XMLSchema(schema_path)
-    is_valid = False
+# funkcja sprawdzająca czy plik XML
+# 1. nie zawiera błędów uniemożliwiających parsowanie
+# 2. jest zgodny z przyjętym schematem
+def is_xml_valid(xml_schema: xmlschema.XMLSchema, xml_path: str) -> bool:
     try:
         is_valid = xml_schema.is_valid(xml_path)
     except Exception as e:
@@ -37,34 +24,60 @@ def is_xml_valid(schema_path: str, xml_path: str) -> bool:
             print(e)
         return False
 
+# funkcja filtrująca pd.DataFrame wg zadanych kryteriów
+def filter_by_criteria(df_from_xml: pd.DataFrame, args) -> pd.DataFrame:
+    if args.rank:
+        df_from_xml = df_from_xml[df_from_xml['rank'] == args.rank]
+    if args.gender:
+        df_from_xml = df_from_xml[df_from_xml['gender'] == args.gender]
+    if args.salary_range:
+        df_from_xml = df_from_xml[df_from_xml['salary'].between(args.salary_range[0],
+                                                                args.salary_range[1])]
+    if args.age_range:
+        df_from_xml = df_from_xml[df_from_xml['age'].between(args.age_range[0],
+                                                             args.age_range[1])]
+    if df_from_xml.empty:
+        print("Nie znaleziono osób dla podanych kryteriów!")
+    else:
+        df_from_xml.reset_index(drop=True, inplace=True)
+        print(df_from_xml)
+    return df_from_xml
+
 
 def main():
-    # Tworzenie parsera argumentów
+    # stworzenie parsera
     parser = argparse.ArgumentParser(description='Filter people by specified criteria.')
-
-    # Dodanie argumentów
+    # dodanie argumentów
     parser.add_argument('--rank', type=str, help='Filter by rank')
     parser.add_argument('--gender', type=str, choices=['Male', 'Female'],
                         help='Filter by gender')
     parser.add_argument('--salary-range', nargs=2, type=int, metavar=('MIN', 'MAX'),
                         help='Filter by salary range')
-
-    # Parsowanie argumentów z linii poleceń
+    parser.add_argument('--age-range', nargs=2, type=int, metavar=('MIN', 'MAX'),
+                        help='Filter by age range')
     args = parser.parse_args()
-    # Wyświetlanie rezultatów
-    if args.rank:
-        print("Filtering by rank:", args.rank)
-    if args.gender:
-        print("Filtering by gender:", args.gender)
-    if args.salary_range:
-        print("Filtering by salary range:", args.salary_range[0], "-", args.salary_range[1])
+
+    # pliki ze schematem oraz danymi
+    schema_path = "schema_people.xsd"
+    xml_path = "example_files/people.xml"
+
+    # sprawdzenie, czy podane ścieżki są poprawne
+    if not os.path.exists(schema_path) or not os.path.exists(xml_path):
+        print(f"Plik nie istnieje lub podana ścieżka jest błędna.")
+        return
+    # sprawdzenie, czy plik XML ma prawidłowe rozszerzenie
+    if not xml_path.endswith(".xml"):
+        return
+    # stworzenie obiektu XMLSchema
+    xml_schema = xmlschema.XMLSchema(schema_path)
+    if not is_xml_valid(xml_schema, xml_path):
+        return
+    # załadowanie danych z XML do pd.DataFrame
+    df_from_xml = pd.read_xml(xml_path)
+    # print(df_from_xml)
+    # uruchomienie funkcji filtrującej dane
+    filter_by_criteria(df_from_xml, args)
 
 if __name__ == "__main__":
     main()
 
-# xml_to_dataframe("example_files/people1.xml", "schema_people.xsd")
-# xml_to_dataframe("example_files/people2.xml", "schema_people.xsd")
-# xml_to_dataframe("example_files/people3.xml", "schema_people.xsd")
-# xml_to_dataframe("example_files/people4.xml", "schema_people.xsd")
-# ("example_files/people5.xml", "schema_people.xsd")
-# xml_to_dataframe("example_files/people6.xml", "schema_people.xsd")
